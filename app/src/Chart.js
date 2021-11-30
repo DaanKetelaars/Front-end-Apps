@@ -1,49 +1,33 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const GetData = () => {
-  const [albums, setArtist] = useState([]);
+  const [albums, setAlbums] = useState([]);
 
   useEffect(() => {
     fetch(
       "https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=kanye&api_key=7ebc4d450f175fa75d3260763df487fb&format=json"
     )
       .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-        setArtist(res.data);
+      .then((json) => {
+        let data = json;
+        let albumsArray = data.topalbums.album;
+        albumsArray.sort((a, b) => b.playcount - a.playcount);
+        const size = 3;
+        const topThreeAlbums = albumsArray.slice(0, size);
+        console.log(topThreeAlbums);
+        setAlbums(topThreeAlbums);
       })
-      // let data = json;
-      // let allAlbums = data.topalbums.album;
-      // allAlbums.sort((a, b) => b.playcount - a.playcount);
-      // const size = 3;
-      // const topThree = allAlbums.slice(0, size);
-      // console.log(topThree);
-      // const [item] = topThree;
-      // console.log(item);
-      // setArtist();
       .catch((error) => {
         console.log(error);
       });
   }, []);
-
   return (
     <div>
-      <ul>
-        {albums &&
-          albums.map((item) => (
-            <li key={item.id}>
-              <span>{item.name}</span>
-            </li>
-          ))}
-      </ul>
+      {albums.map((album) => (
+        <p>{album.name}</p>
+      ))}
     </div>
-    // <div>
-    //   {album && (
-    //     <div>
-    //       <img src={album.image[3]["#text"]} alt="" />
-    //     </div>
-    //   )}
-    // </div>
   );
 };
+
 export default GetData;
