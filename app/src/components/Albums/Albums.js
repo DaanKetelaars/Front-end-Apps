@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Albums = () => {
   const [albums, setAlbums] = useState([]);
@@ -31,7 +32,6 @@ const Albums = () => {
     <>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Search</label>
           <input
             type="text"
             name="search"
@@ -41,22 +41,30 @@ const Albums = () => {
           />
         </div>
       </form>
-      <div className="albumCovers">
-        {albums.map((album) => (
-          <article key={album.name}>
-            <ul>
-              <li>
-                <h3>{album.name}</h3>
-                <p>{album.playcount}</p>
-                <img
-                  src={album.image[3]["#text"]}
-                  alt={`Cover album of ${album.name}`}
-                />
-              </li>
-            </ul>
-          </article>
-        ))}
-      </div>
+      <Link to="/album-info">
+        <div className="albumCovers">
+          {albums.map((album) => (
+            <article key={album.name}>
+              <ul>
+                <li>
+                  <h4>Album:</h4>
+                  <h3>{album.name}</h3>
+
+                  <img
+                    src={album.image[3]["#text"]}
+                    alt={`Cover album of ${album.name}`}
+                  />
+                  <p>
+                    <span>Listeners:</span>
+                    <br />
+                    {album.playcount.toLocaleString("en-US")}
+                  </p>
+                </li>
+              </ul>
+            </article>
+          ))}
+        </div>
+      </Link>
     </>
   );
 };

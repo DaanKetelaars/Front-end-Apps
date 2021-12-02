@@ -1,8 +1,42 @@
+form {
+  div {
+    input {
+      background: #ffffff;
+      border-radius: 100px;
+      padding: 1rem 2rem;
+      margin-bottom: 5rem;
+      border: none;
+    }
+  }
+}
+
 .albumCovers {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2rem;
   width: 100%;
   li {
     list-style: none;
+  }
+  h3 {
+    color: #91eed9;
+    margin-bottom: 1rem;
+  }
+  h4 {
+    color: #c4b1d4;
+    margin-bottom: 0.5rem;
+    font-weight: normal;
+  }
+  p {
+    color: #91eed9;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+    font-weight: bold;
+    font-size: 2rem;
+    span {
+      color: #c4b1d4;
+      font-weight: normal;
+      font-size: 1rem;
+    }
   }
 }
