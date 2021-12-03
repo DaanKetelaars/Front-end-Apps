@@ -1,6 +1,7 @@
 // import
 import React from "react";
 import Albums from "../../components/Albums/Albums";
+import BgAnimation from "../../components/Animation/BackgroundAnimation";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
           <Albums />
         </div>
       </header>
+      <BgAnimation />
     </>
   );
 }

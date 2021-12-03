@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const Albums = () => {
   const [albums, setAlbums] = useState([]);
   const [result, setResults] = useState("");
-
   const handleSubmit = (event) => {
     event.preventDefault();
   };
-
   useEffect(() => {
-    fetch(
-      `https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${result}&api_key=7ebc4d450f175fa75d3260763df487fb&format=json`
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        let data = json;
-        let albumsArray = data.topalbums.album;
-        console.log(albumsArray);
+    Promise.all([
+      fetch(
+        `https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${result}&api_key=7ebc4d450f175fa75d3260763df487fb&format=json`
+      ),
+      fetch(
+        `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=7ebc4d450f175fa75d3260763df487fb&artist=Drake&album=Views&format=json`
+      ),
+    ])
+      .then(async ([a, b]) => {
+        const allAlbums = await a.json();
+        // const albumInfo = await b.json();
+        let albumsArray = allAlbums.topalbums.album;
         albumsArray.sort((a, b) => b.playcount - a.playcount);
         const size = 3;
         const topThreeAlbums = albumsArray.slice(0, size);
@@ -41,9 +43,9 @@ const Albums = () => {
           />
         </div>
       </form>
-      <Link to="/album-info">
-        <div className="albumCovers">
-          {albums.map((album) => (
+      <div className="albumCovers">
+        {albums.map((album) => (
+          <a href={album.url} target="_blank" rel="noopener noreferrer">
             <article key={album.name}>
               <ul>
                 <li>
@@ -62,9 +64,9 @@ const Albums = () => {
                 </li>
               </ul>
             </article>
-          ))}
-        </div>
-      </Link>
+          </a>
+        ))}
+      </div>
     </>
   );
 };

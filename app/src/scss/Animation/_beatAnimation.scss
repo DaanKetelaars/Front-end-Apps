@@ -1,0 +1,117 @@
+.musicBeat {
+  position: absolute;
+  background: #3c00e4;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  div {
+    &:nth-of-type(1) {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(4);
+      background: #3900d8;
+      box-shadow: 0px 0px 100px #3900d8;
+      height: 100%;
+      width: 300px;
+      height: 300px;
+      border-radius: 100%;
+      transition: transform ease-in-out;
+      animation: divOne 2s infinite;
+    }
+    &:nth-of-type(2) {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(3);
+      background: #3502c3;
+      box-shadow: 0px 0px 100px #3502c3;
+      width: 300px;
+      height: 300px;
+      border-radius: 100%;
+      transition: transform ease-in-out;
+      animation: divTwo 2.5s infinite;
+    }
+    &:nth-of-type(3) {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(2);
+      background: #4206ea;
+      box-shadow: 0px 0px 100px #4206ea;
+      width: 300px;
+      height: 300px;
+      border-radius: 100%;
+      transition: transform ease-in-out;
+      animation: divThree 2.75s infinite;
+    }
+    &:nth-of-type(4) {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      background: #4909fe;
+      box-shadow: 0px 0px 100px #4909fe;
+      width: 300px;
+      height: 300px;
+      border-radius: 100%;
+      transition: transform ease-in-out;
+      animation: divFour 3s infinite;
+    }
+  }
+}
+
+@keyframes divOne {
+  0% {
+    transform: translate(-50%, -50%) scale(3.5);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(4);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3.5);
+  }
+}
+
+@keyframes divTwo {
+  0% {
+    transform: translate(-50%, -50%) scale(2.5);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(3);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.5);
+  }
+}
+
+@keyframes divThree {
+  0% {
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(2);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+}
+
+@keyframes divFour {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.25);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+}
